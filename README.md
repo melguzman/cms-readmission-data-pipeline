@@ -1,4 +1,4 @@
-🚑 Healthcare Readmission Reduction Pipeline
+<h1>🚑 Healthcare Readmission Reduction Pipeline</h1>
 A data pipeline to ingest, transform, and visualize CMS Hospital Readmissions Reduction Program (HRRP) data.
 
 This project automates:
@@ -7,7 +7,7 @@ This project automates:
 ✅ Data cleaning & transformations using dbt
 ✅ Analytics & dashboards in Tableau
 
-🌐 Project Structure
+<h2>🌐 Project Structure</h2>
 ```
 healthcare_readmission_pipeline/
 │
@@ -32,7 +32,7 @@ healthcare_readmission_pipeline/
 └── README.md
 ```
 
-⚙️ How It Works
+<h2>⚙️ How It Works</h2>
 1. Data Ingestion
 - Source file: hospital_readmissions.csv
 - Loaded into SQLite DB table: raw_hospital_readmissions
@@ -71,7 +71,7 @@ dbt run
 
 Note: For Tableau Public, CSV extracts are used instead of live DB connections.
 
-🚀 Running the Pipeline
+<h2>🚀 Running the Pipeline</h2>
 Prerequisites
 - Python 3.10
 - Airflow
@@ -112,7 +112,7 @@ tableau/dashboard.twb
 - Time trends
 - Filters for Top/Bottom hospitals
 
-🗃️ Data Sources
+<h2>🗃️ Data Sources</h2>
 - [CMS Hospital Readmissions Reduction Program](https://data.cms.gov/provider-data/dataset/9n3s-kdb3#overview)
 
 ✅ Completed Visuals
@@ -121,11 +121,11 @@ tableau/dashboard.twb
 ✅ Condition filters (heart failure, pneumonia, etc.)
 ✅ Top/bottom 10 hospitals by penalties
 
-✨ Future Improvements
+<h2>✨ Future Improvements</h2>
 - Deploy Airflow & dbt in cloud
 - Integrate additional CMS datasets
 
-Quick Start
+<h2>Quick Start</h2>
 ```bash
 # Run pipeline end-to-end:
 airflow dags trigger hrp_ingest_pipeline
