@@ -1,0 +1,109 @@
+version: 2
+
+sources:
+  - name: hospital_readmissions_source
+    schema: main
+    description: Source dataset containing CMS Hospital Readmissions Reduction Program data
+    tables:
+      - name: raw_hospital_readmissions
+        description: Raw readmissions data ingested from the CMS CSV file
+        columns:
+          - name: facility_name
+            description: Name of the hospital facility
+          - name: facility_id
+            description: CMS facility ID
+            tests:
+            - not_null
+          - name: state
+            description: US State abbreviation
+          - name: measure_name
+            description: Name of the readmission measure
+          - name: number_of_discharges
+            description: Number of discharges used in the measure
+          - name: footnote
+            description: Additional notes for this record
+          - name: excess_readmission_ratio
+            description: Ratio of hospital readmissions vs national average
+          - name: predicted_readmission_rate
+            description: Predicted readmission rate for the facility
+          - name: expected_readmission_rate
+            description: Expected national readmission rate
+          - name: number_of_readmissions
+            description: Number of readmissions observed
+          - name: start_date
+            description: Reporting period start date
+          - name: end_date
+            description: Reporting period end date
+
+models:
+  - name: stg_hospital_readmissions
+    description: Cleaned and typed staging layer for hospital readmission data
+    columns:
+      - name: facility_id
+        description: CMS facility ID
+        tests:
+            - not_null
+      - name: facility_name
+        description: Name of the hospital
+      - name: state
+        description: US State abbreviation
+      - name: measure_name
+        description: Name of the readmission measure
+      - name: number_of_discharges
+        description: Number of discharges used in the measure
+      - name: footnote
+        description: Additional notes
+      - name: excess_readmission_ratio
+        description: Excess readmission ratio for the facility
+      - name: predicted_readmission_rate
+        description: Predicted readmission rate
+      - name: expected_readmission_rate
+        description: Expected national readmission rate
+      - name: number_of_readmissions
+        description: Number of observed readmissions
+      - name: start_date
+        description: Start date of the reporting period (date type)
+      - name: fiscal_year
+        description: Derived fiscal year of the reporting period
+      - name: end_date
+        description: End date of the reporting period (date type)
+
+  - name: hospital_penalties
+    description: Calculates hospital penalty amounts based on readmission data
+    columns:
+      - name: facility_id
+        description: CMS facility ID
+        tests:
+            - not_null
+      - name: facility_name
+        description: Name of the hospital
+      - name: fiscal_year
+        description: Reporting fiscal year
+      - name: penalty_amount
+        description: Calculated penalty amount for the hospital
+
+  - name: penalty_trends
+    description: Time trends in penalty amounts across facilities and measures
+    columns:
+      - name: fiscal_year
+        description: Fiscal year
+      - name: average_penalty
+        description: Average penalty across hospitals
+      - name: state
+        description: US State abbreviation
+
+  - name: top_bottom_hospitals
+    description: Identifies hospitals with highest and lowest penalties
+    columns:
+      - name: facility_id
+        description: CMS facility ID
+        tests:
+            - not_null
+      - name: facility_name
+        description: Hospital name
+      - name: fiscal_year
+        description: Fiscal year
+      - name: penalty_amount
+        description: Calculated penalty amount
+      - name: rank
+        description: Ranking of the hospital based on penalties

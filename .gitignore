@@ -1,0 +1,13 @@
+# Ignore SQLite DB and Airflow logs
+*.db
+*.pyc
+__pycache__/
+airflow_logs/
+.env/
+
+# Ignore DBT compiled files
+hrrp_dbt/target/
+hrrp_dbt/dbt_packages/
+
+# Ignore CSVs from Tableau if needed
+tableau/*.csv
