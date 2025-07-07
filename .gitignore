@@ -11,3 +11,6 @@ hrrp_dbt/dbt_packages/
 
 # Ignore CSVs from Tableau if needed
 tableau/*.csv
+
+venv/
+logs/
