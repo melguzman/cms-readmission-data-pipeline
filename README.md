@@ -8,6 +8,7 @@ This project automates:
 ✅ Analytics & dashboards in Tableau
 
 🌐 Project Structure
+```
 healthcare_readmission_pipeline/
 │
 ├── dags/
@@ -29,6 +30,7 @@ healthcare_readmission_pipeline/
 │
 ├── requirements.txt
 └── README.md
+```
 
 ⚙️ How It Works
 1. Data Ingestion
